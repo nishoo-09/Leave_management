@@ -1,0 +1,63 @@
+<%-include('../header') %>
+<div class="cosl-sm-12" id="title">
+  <div class="container-fluid">
+    <p class="page-title"><%= title %></p>
+  </div>
+</div>
+<div class="container">
+  <%- include('../partials/messages') %>
+  <a class="add btn btn-default" href="/employee/add-leave" title="Add" data-toggle="tooltip">
+    <i class="material-icons"></i>Add New Leave
+  </a>
+	<table class="table table-image">
+		<% if(locals.leaveResult !== undefined) {%>
+	    <caption>Total Applied Leaves : <%= leaveResult.length %></caption>
+	    <thead>
+	    	<th scope="col">Employee Name</th>
+	    	<th scope="col">Leave Reason</th>
+	    	<th scope="col">From Date</th>
+	    	<th scope="col">To Date</th>
+	    	<th scope="col">Status</th>
+	    	<th scope="col">Description</th>
+	    	<th scope="col">Options</th>
+	    </thead>
+	    <tbody>
+	    	<% leaveResult.forEach((data)=>{ %>
+	      <tr>
+	        <td scope="row"><%= data.username %></td>
+	        <td scope="row"><%= data.lReason %></td>
+	        <td scope="row"><%= data.fromDate.toDateString() %></td>
+	        <td scope="row"><%= data.toDate.toDateString() %></td>
+	        <td scope="row"><%= data.status %></td>
+	        <td scope="row"><%= (data.description != '') ? data.description : '-' %></td>
+	        <td class="emp-data">
+            <a class="edit" title="Edit Leave" data-toggle="tooltip"  href="/employee/edit-leave/<%= data._id %>">
+              <i class="material-icons"></i>
+            </a>
+            <a class="delete" title="Delete Leave" data-toggle="tooltip" href="/employee/leave-delete/<%= data._id %>">
+              <i class="material-icons" ></i>
+            </a>
+          </td>
+	      </tr>
+	      <% }) %>
+	    </tbody>
+    <% } 
+    else {%>
+    	<caption>Total Applied Leaves : 0</caption>
+    	<thead>
+	    	<th scope="col">Employee Name</th>
+	    	<th scope="col">Leave Reason</th>
+	    	<th scope="col">From Date</th>
+	    	<th scope="col">To Date</th>
+	    	<th scope="col">Status</th>
+	    	<th scope="col">Description</th>
+	    	<th scope="col">Options</th>
+	    </thead>
+    <% } %>
+  </table>
+</div>
+</body>	
+</html>
+<script>
+	$('[data-toggle="tooltip"]').tooltip();
+</script>

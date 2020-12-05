@@ -1,0 +1,25 @@
+
+<% if(typeof error_msg != "undefined") {
+	error_msg.forEach((element)=> {%>
+		<div class="alert alert-danger" role="alert">
+		  <%= element.message %>
+		</div>
+
+	<%});
+ } %>
+
+<%if(typeof success != "undefined" && success.length > 0){%>
+	<div class="alert alert-success" role="alert">
+		<%= success %>
+	</div>
+<% } %>
+<%if(typeof error != "undefined" && error.length > 0){%>
+		<div class="alert alert-danger" role="alert">
+		  <%= error %>
+		</div>
+<% } %>
+
+<% if (typeof message != "undefined") { %>
+  <p style="color: red;" class="text-center"><%= message %></p>
+<% } %>
+

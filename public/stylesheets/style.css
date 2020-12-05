@@ -1,0 +1,89 @@
+body {
+  padding: 50px;
+  font-family: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  /*font-family: oboto;line-height: 1.5;*/
+}
+
+a {
+  color: #00B7FF;
+}
+ a:focus{outline: none;}
+.navbar-brand p::first-letter {
+  font-size: 100%;
+  color: #d43f3a;
+}
+.navbar-brand p{
+  float: left;
+  padding-left: 13px;
+}
+.navbar a{color:#000;}
+.navbar{margin-bottom: 0px;}
+#title .page-title{text-align: center;height: 40px;background: #000;color: #fff;padding: 10px;line-height: 1.5;}
+.admin-panel{display: flex;flex-direction: column;align-content: center;text-align: center;}
+.admin-panel .col-sm-6{margin-left: auto;margin-right: auto;margin-top: 3px;background: #3096e0;color: #fff;padding: 7px;}
+.admin-panel .col-sm-6 a{color:#fff;text-decoration: none;cursor: pointer;}
+.admin-panel .container-title {background:#fff;text-align: left;color:#000;}
+
+.myForm {min-width: 500px;top: 50%;left: 33%;}
+.container-form{margin-left: auto;margin-right: auto;width:50%;margin-top: 20px;}
+input:-webkit-autofill {
+   -webkit-box-shadow: inset 0 0 0px 9999px white;
+}
+.home {background: #3d8bd0;}
+.lms{padding: 10px;}
+.lms i{color: #e53a3a;}
+.txt-blur{color: rgba(0,0,0,.5);}
+.home .container-fluid{display: flex;flex-direction: column;align-content: center;margin-left: 10%;margin-right: 10%;}
+.forgot-password {float: right;color: #d9534f;text-decoration: none !important;}
+.submit-emp-form {margin-top: 10px;float: right;}
+.wait-valid{color:#d9534f;}
+#myImage, #dateOfBirth{padding: 1px;}
+
+/* employee detail*/
+.table-image {
+  td, th {
+    vertical-align: middle;
+  }
+}
+.w-8{width: 8%;}
+.w-8 a{width: 100%;}
+.w-8 img{height: 60px;width: 100%;}
+table.table td a {cursor: pointer;display: inline-block;margin: 0 5px;min-width: 24px;}
+.container a.add {float: right;}
+table.table td a.edit {color: #FFC107;}
+table.table td a.delete {color: #E34724;}
+table.table td i {font-size: 19px;}   
+table.table caption{padding-top: 0px;}
+table.table .no-emp {color:#E34724; text-align: center;}       
+table.table tr td {font-weight: initial;}
+table.table .emp-data{padding-top:25px;}
+
+
+/* Employee modal*/
+.employee-modal {min-height: 365px;}
+.modal-title {font-weight: bold;}
+.edit-employee {margin-top: -10px;}
+.edit-employee input, .edit-employee button {float: right;}
+
+#home td {
+    line-height: 14px !important;
+    font-family: Tahoma !important;
+    color: #4a4b4b !important;
+    font-size: 8pt !important;
+}
+#home h1{font-family: Tahoma;font-size: 14pt;color: #F37920;padding: 0px;margin: 0px;font-weight: bold;
+}
+#home .card-desktop{width: 100px;height: 100px;text-align: center;margin: auto;}
+#home .card i{font-size: 70px;}
+.card {text-align: center;margin: 50px auto;background: #fff;padding: 30px 22px;border-radius: 6px;box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);box-sizing: border-box;position: relative;min-height: 300px;transition: all 0.3s ease-in-out;padding-bottom: 0px;}
+.userProfileImg {width: 100px;height: 100px; border-radius: 50%;}
+.leaveCard {margin: 0px;}
+.leaveCard td{text-align: left;}
+.userProfileCard {height: 390px;}
+.lms-header {box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16);}
+@media (max-width: 500px) {
+  .myForm {
+    min-width: 90%;
+  }
+}

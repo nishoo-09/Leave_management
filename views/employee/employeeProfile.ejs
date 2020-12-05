@@ -1,0 +1,124 @@
+<%-include('../header') %>
+<div class="cosl-sm-12" id="title">
+  <div class="container-fluid">
+    <p class="page-title"><%= title %></p>
+  </div>
+</div>
+<div class="container">
+  <%- include('../partials/messages') %>
+  <% if(locals.result !== undefined) { 
+  %>
+  <div class="col-md-3 col-sm-6 col-xs-6 full_width">
+	 	<div class="card userProfileCard">
+		  <img class="userProfileImg" src="<% if(typeof result.img.data != 'undefined') {%>data:image/<%=result.img.contentType%>;base64, 
+        <%=result.img.data.toString('base64')%> <%} else {%>/images/lms2.png <%}%>" />
+		  <div class="card-body">
+		    <h5 class="card-title"><%= result.userRole %></h5>
+		    <p class="card-text"><%= result.address %></p>
+		    <a href="#" class="btn btn-primary">Follow</a>
+		    <a href="#" class="btn btn-default">Message</a>
+		  </div>
+		</div>
+	</div>
+	<div class="col-sm-9 col-xs-9 full_width">
+	 	<div class="card">
+		  <table class="table table-image">
+		    <caption>User Details</caption>
+		    <tbody>
+		      <tr>
+		        <th scope="row">Full Name</th>
+		        <td scope="row"><%= result.name %></td>
+		      </tr>
+		      <tr>
+		        <th scope="row">Gender</th>
+		        <td scope="row"><%= result.gender %></td>
+		      </tr>
+		      <tr>
+		        <th scope="row">Email</th>
+		        <td scope="row"><%= result.email %></td>
+		      </tr>
+		      <tr>
+		        <th scope="row">Phone</th>
+		        <td scope="row"><%= result.phone %></td>
+		      </tr>
+		      <tr>
+		        <th scope="row">Date Of Birth</th>
+		        <td scope="row"><%= result.dateOfBirth.toDateString() %></td>
+		      </tr>
+		      <tr>
+		        <th scope="row">Country</th>
+		        <td scope="row"><%= result.country %></td>
+		      </tr>
+		      <tr>
+		        <th scope="row">State</th>
+		        <td scope="row"><%= result.state %></td>
+		      </tr>
+		      <tr>
+		        <th scope="row">City</th>
+		        <td scope="row"><%= result.city %></td>
+		      </tr>
+		      <tr>
+		        <th scope="row">Address</th>
+		        <td scope="row"><%= result.address %></td>
+		      </tr>
+		    </tbody>
+		  </table>
+		</div>
+	</div>
+	<div class="col-sm-12 col-xs-12 full_width">
+	 	<div class="card leaveCard">
+	 		<table class="table table-image">
+	 		<% if(locals.leaveResult !== undefined) {%>
+			    <caption>Total Applied Leaves : <%= leaveResult.length %></caption>
+			    <thead>
+			    	<th scope="col">Employee Name</th>
+			    	<th scope="col">Leave Reason</th>
+			    	<th scope="col">From Date</th>
+			    	<th scope="col">To Date</th>
+			    	<th scope="col">Status</th>
+			    	<th scope="col">Description</th>
+			    	<th scope="col">Options</th>
+			    </thead>
+			    <tbody>
+			    	<% leaveResult.forEach((data)=>{ %>
+			      <tr>
+			        <td scope="row"><%= data.username %></td>
+			        <td scope="row"><%= data.lReason %></td>
+			        <td scope="row"><%= data.fromDate.toDateString() %></td>
+			        <td scope="row"><%= data.toDate.toDateString() %></td>
+			        <td scope="row"><%= data.status %></td>
+			        <td scope="row"><%= (data.description != '') ? data.description : '-' %></td>
+			        <td class="emp-data">
+	              <a class="edit" title="Edit Leave" data-toggle="tooltip"  href="/employee/edit-leave/<%= data._id %>">
+	                <i class="material-icons"></i>
+	              </a>
+	              <a class="delete" title="Delete Leave" data-toggle="tooltip" href="/employee/leave-delete/<%= data._id %>">
+	                <i class="material-icons" ></i>
+	              </a>
+	            </td>
+			      </tr>
+			      <% }) %>
+			    </tbody>
+		    <% } 
+		    else {%>
+		    	<caption>Total Applied Leaves : 0</caption>
+		    	<thead>
+			    	<th scope="col">Employee Name</th>
+			    	<th scope="col">Leave Reason</th>
+			    	<th scope="col">From Date</th>
+			    	<th scope="col">To Date</th>
+			    	<th scope="col">Status</th>
+			    	<th scope="col">Description</th>
+			    	<th scope="col">Options</th>
+			    </thead>
+		    <% } %>
+		  </table>
+		</div>
+	</div>
+	<% } %>
+</div>
+</body>	
+</html>
+<script>
+	$('[data-toggle="tooltip"]').tooltip();
+</script>

@@ -1,0 +1,76 @@
+<%-include('../header') %>
+<div class="cosl-sm-12" id="title">
+  <div class="container-fluid">
+    <p class="page-title"><%= title %></p>
+  </div>
+</div>
+<div class="container">
+  <%- include('../partials/messages') %>
+  
+    <form method="POST" enctype="multipart/form-data">
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" class="form-control" placeholder="Username" value="<% if(locals.username) {%><%= username %><%}%>">
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="userRole">User Role</label>
+        <select class="form-control" id="userRole"  name="userRole">
+          <option>Select</option>
+          <option>Jr Software Engineer</option>
+          <option>Sr Software Engineer</option>
+          <option>Manager</option>
+          <option>Tester</option>
+          <option>Dev Ops</option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" value="<% if(locals.password) {%><%= password %><%}%>" >
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirm Password" value="<% if(locals.confirmPassword) {%><%= confirmPassword %><%}%>" >
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="<% if(locals.name) {%><%= name %><%}%>" >
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" class="form-control" placeholder="Email" value="<% if(locals.email) {%><%= email %><%}%>" >
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="phone">Mobile</label>
+        <input type="tel" id="phone" name="phone" class="form-control" placeholder="Mobile" value="<% if(locals.phone) {%><%= phone %><%}%>" >
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="gender">Gender</label>
+        <select class="form-control" id="gender" name="gender">
+          <option>Select</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="dateOfBirth">Date Of Birth</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" placeholder="Date Of Birth" value="<% if(locals.dateOfBirth) {%><%= dateOfBirth %><%}%>" >
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="address">Address</label>
+        <input type="textarea" id="address" name="address" class="form-control" placeholder="Address" value="<% if(locals.address) {%><%= address %><%}%>" >
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="myImage">Image</label>
+        <input type="file" class="form-control" id="myImage" name="myImage">
+        <div class="txt-blur" >Image should be less than 100kb</div>
+      </div>
+    </div>
+    <div class="col-md-12 mb-3 submit-emp-form">
+      <input type="submit" name="submit" class="btn btn-primary" value="SAVE" />
+      <a class="btn btn-danger" href="/">CANCEL</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>
