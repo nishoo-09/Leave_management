@@ -1,0 +1,156 @@
+<%-include('../header') %>
+<div class="cosl-sm-12" id="title">
+  <div class="container-fluid">
+    <p class="page-title"><%= title %></p>
+  </div>
+</div>
+<div class="container">
+  <%- include('../partials/messages') %>
+  <a class="add btn btn-default" href="/employee/add-employee" title="Add" data-toggle="tooltip">
+    <i class="material-icons"></i>Add New Employee
+  </a>
+  <table class="table table-image">
+    <caption>List of users</caption>
+    <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date Of Birth</th>
+        <th scope="col">Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if(locals.err !== undefined) {%> 
+        <tr>
+          <td class="no-emp" colspan="6"><%= err%></td>
+        </tr>
+      <% } else if(locals.results !== undefined) { 
+          results.forEach((datas)=>{ %>
+            <tr>
+              <td scope="row" class="w-8"><a href="/employee/profile/<%= datas.id %>"> <img src="<% if(typeof datas.img.data != 'undefined') {%>data:image/<%=datas.img.contentType%>;base64, 
+                <%=datas.img.data.toString('base64')%> <%} else {%>/images/lms2.png <%}%>" class="img-fluid img-thumbnail empImg" /></a></td>
+              <td class="emp-data"><%= datas.name %></td>
+              <td class="emp-data"><%= datas.gender %></td>
+              <td class="emp-data"><%= datas.email %></td>
+              <td class="emp-data"><%= datas.dateOfBirth.toDateString() %></td>
+              <td class="emp-data">
+                <a class="edit" title="Edit" data-toggle="modal" data-target="#editEmployee" data-id="<%= JSON.stringify(datas) %>">
+                  <i class="material-icons"></i>
+                </a>
+                <a class="delete" title="Delete" data-toggle="tooltip" href="employee-delete?id=<%= datas.id %>">
+                  <i class="material-icons" ></i>
+                </a>
+              </td>
+            </tr>
+      <% })} %>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" id="editEmployee" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="employee-modal">
+        <form method="POST" enctype="multipart/form-data" name="myForm" action="/employee/employee-edit">
+          <div class="form-row modal-body">
+            <div class="col-md-6 mb-3">
+              <label for="email2">Email</label>
+              <input type="text" id="email2" name="email2" class="form-control" placeholder="Email" value="" disabled>
+            </div>
+            <input type="hidden" id="email" name="email" class="form-control" value="">
+            <div class="col-md-6 mb-3">
+              <label for="userRole">User Role</label>
+              <select class="form-control" id="userRole"  name="userRole">
+                <option>Select</option>
+                <option value="">Jr Software Engineer</option>
+                <option>Sr Software Engineer</option>
+                <option>Manager</option>
+                <option>Tester</option>
+                <option>Dev Ops</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" class="form-control" placeholder="Password" value="" >
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="" >
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="phone">Mobile</label>
+              <input type="tel" id="phone" name="phone" class="form-control" placeholder="Mobile" value="" >
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="gender">Gender</label>
+              <select class="form-control" id="gender" name="gender">
+                <option>Select</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="dateOfBirth">Date Of Birth</label>
+              <input type="date" id="dateOfBirth" name="dateOfBirth" class="form-control" placeholder="Date Of Birth" value="" >
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="address">Address</label>
+              <input type="textarea" id="address" name="address" class="form-control" placeholder="Address" value="" >
+            </div>
+            
+            <div class="col-md-6 mb-3">
+              <label for="editImage">Image</label>
+              <input type="file" class="form-control" id="editImage" name="editImage">
+              <div class="txt-blur" >Image should be less than 100kb</div>
+            </div>
+          </div>
+          <div class="col-md-12 mb-3 edit-employee">
+            <input type ="submit" name="submit" class="btn btn-primary" value="Update" />
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>  
+    </div>
+  </div>
+</div>
+<script>
+  $('[data-toggle="tooltip"]').tooltip();
+  $('.table td .edit').click(function(){
+    const datas = $(this).data('id');
+    
+    let date = formatDate(datas.dateOfBirth);
+
+    $('#editEmployee form #email').val(datas.email);
+    $('#editEmployee form #email2').val(datas.email);
+    $('#editEmployee form #password').val(datas.password);
+    $('#editEmployee form #phone').val(datas.phone);
+    $('#editEmployee form #name').val(datas.name);
+    $('#editEmployee form #address').val(datas.address);
+  });
+  function formatDate(d)
+  {
+    date = new Date(d)
+    var dd = date.getDate(); 
+    var mm = date.getMonth()+1;
+    var yyyy = date.getFullYear(); 
+    if(dd<10){dd='0'+dd} 
+    if(mm<10){mm='0'+mm};
+    return d = dd+'/'+mm+'/'+yyyy
+  }
+  if($('.alert').length){
+    setTimeout(function(){
+      $('.alert').hide();
+    }, 3000);
+  }
+  
+</script>

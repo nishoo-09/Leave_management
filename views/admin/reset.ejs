@@ -1,0 +1,31 @@
+<%-include('../header') %>
+<div class="cosl-sm-12" id="title">
+  <div class="container-fluid">
+    <p class="page-title"><%= title %></p>
+  </div>
+</div>
+<div class="container">
+  <%- include('../partials/messages') %>
+  <div class="reset-form container-form">
+    <form id="resetForm" method="post" action="/users/reset">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control input-lg" type="email" name="email" id="email" placeholder="Email" value="<% if(typeof email != 'undefined')%><%=email%>" autocomplete='off' />
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input class="form-control input-lg" type="password" name="password" placeholder="password" value="" autocomplete='off' />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Password</label>
+        <input class="form-control input-lg" type="password" name="confirmPassword" placeholder="Confirm Password" value="" autocomplete='off' />
+      </div>
+      <div class="form-group">
+        <input type="submit" name="submit" class="btn btn-primary" value="Reset Password" />
+        <input type="reset" name="cancel" class="btn btn-danger" value="CANCEL" />
+      </div> 
+    </form>
+  </div>
+</div>
+</body>
+</html>

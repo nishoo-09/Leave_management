@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title><%= title %></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<nav class="navbar  bg-light">
+  <div class="container-fluid lms-header">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/"><p>Leave </p><p>Management</p><p> System</p></a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/about-us">About Us</a></li>
+      <% if(loginUser) { %>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add New
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/employee/add-employee">Add New Employee</a></li>
+              <li><a href="/employee/add-leave">Add New Leave</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reports
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/employee/employee-detail">Employee Report</a></li>
+              <li><a href="/employee/leave-detail">Leave Report</a></li>
+            </ul>
+          </li>
+          <li><a href="/users/change-password">Change Password</a></li>
+          <li><a href="/users/dashboard"><span class="glyphicon glyphicon-user"></span> Dashboard</a></li>
+          <li><a href="/users/logout"><span class="glyphicon glyphicon-user"></span>Log Out</a></li>
+        <% } 
+        else {
+        %>
+          <li><a href="/users/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href="/users/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <% } %>
+    </ul> 
+  </div>
+</nav>

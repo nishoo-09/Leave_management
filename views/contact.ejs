@@ -1,0 +1,31 @@
+<%-include('header') %>
+<div class="container">
+  <%- include('./partials/messages') %>
+  <div class="signup-form container-form">
+    <form id="signUpForm" method="post">
+      <div class="form-group">
+        <label for="username">Name</label>
+        <input class="form-control input-lg" type="text" name="name" id="name" placeholder="username" value="" autocomplete='off' />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control input-lg" type="email" name="email" id="email" placeholder="Email" value="" autocomplete='off' />
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input class="form-control input-lg" type="subject" name="subject" placeholder="password" value="" autocomplete='off' />
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" class="form-control" placeholder="Description" rows=4 >
+        </textarea>
+      </div>
+      <div class="form-group">
+        <input type="submit" name="submit" class="btn btn-primary" value="Send Message" />
+        <a class="btn btn-danger" href="/">CANCEL</a>
+      </div> 
+    </form>
+  </div>
+</div>
+</body>
+</html>

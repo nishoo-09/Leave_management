@@ -1,0 +1,45 @@
+<%-include('../header') %>
+<div class="cosl-sm-12" id="title">
+  <div class="container-fluid">
+    <p class="page-title"><%= title %></p>
+  </div>
+</div>
+<div class="container">
+  <%- include('../partials/messages') %>
+  <div class="editLeaveForm container-form"> 
+    <form method="POST">
+      <div class="form-row">
+        <div class="col-md-12 mb-3">
+          <label for="lReason">Leave Reason</label>
+          <input type="text" id="lReason" name="lReason" class="form-control" placeholder="Leave Reason" value="<%= (result.lReason !== undefined) ? result.lReason:'' %>">
+        </div>
+        <div class="col-md-12 mb-3">
+          <label for="fromDate">Leave From Date</label>
+          <input type="date" id="fromDate" name="fromDate" class="form-control" placeholder="Password" value="" >
+        </div>
+        <div class="col-md-12 mb-3">
+          <label for="toDate">Leave To Date</label>
+          <input type="date" id="toDate" name="toDate" class="form-control" placeholder="Name" value="" >
+        </div>
+        <div class="col-md-12 mb-3">
+          <label for="status">Leave Status</label>
+          <select class="form-control status" id="status" name="status">
+            <option>Select</option>
+              <option <%= (result.status !== undefined && result.status == "Pending") ? 'selected':'' %>>Pending</option>
+              <option <%= (result.status !== undefined && result.status == "Approved") ? 'selected':'' %>>Approved</option>
+          </select>
+        </div>
+        <div class="col-md-12 mb-3">
+          <label for="description">Description of the Leave</label>
+          <textarea id="description" name="description" class="form-control" placeholder="Description" rows="4" ><%= (result.description !== undefined) ? result.description:'' %></textarea>
+        </div>
+        <div class="col-md-12 mb-3 submit-emp-form">
+          <input type="submit" name="submit" class="btn btn-primary" value="SAVE" />
+          <a class="btn btn-danger" href="/">CANCEL</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
