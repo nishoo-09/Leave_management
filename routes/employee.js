@@ -276,9 +276,7 @@ router.post('/add-leave', (req, res, next) => {
 router.get('/profile/:id?', (req, res, next) => {
 	employeeModel.findOne({_id:req.params.id}).then(result=>{
 		if(result && Object.keys(result).length>0){
-			console.log(result.name);
 			leaveModel.find({userId:result._id}).then(leaveResult=>{
-				console.log(leaveResult);
 				if(leaveResult && leaveResult.length>0)
 					res.render('employee/employeeProfile', { title: 'Employee Profile', result:result, leaveResult:leaveResult});
 				else
@@ -349,7 +347,6 @@ router.get('/leave-delete/:id?', (req, res, next) => {
 router.get('/leave-detail', (req, res, next) => {
 	leaveModel.find().then(result=>{
 		if(result){
-			console.log(result);
 			res.render('employee/leaveDetails', { title: 'Lists Of Leaves', leaveResult:result});
 		}
 	}).catch(err=>console.log(err));
