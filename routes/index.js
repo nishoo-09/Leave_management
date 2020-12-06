@@ -47,7 +47,6 @@ router.post('/contact', function(req, res, next) {
   	description
   });
   newContact.save().then(result=>{
-  	console.log(result);
   	req.flash('success', 'Message successfully sent');
   }).catch(err=>console.log(err));
 });
